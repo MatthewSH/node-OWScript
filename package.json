@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/MatthewSH/node-OWScript#readme",
   "devDependencies": {
+    "@types/fs-extra": "^8.0.0",
     "@types/inquirer": "^6.0.3",
     "@types/yargs": "^13.0.1",
     "typescript": "^3.5.3"
