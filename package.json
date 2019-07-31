@@ -42,6 +42,7 @@
   "dependencies": {
     "command-exists": "^1.2.8",
     "deepmerge": "^4.0.0",
+    "download-git-repo": "^2.0.0",
     "fs-extra": "^8.1.0",
     "inquirer": "^6.5.0",
     "phin": "^3.4.0",
