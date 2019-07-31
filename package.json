@@ -1,0 +1,40 @@
+{
+  "name": "owscript",
+  "version": "1.0.0-beta",
+  "description": "A CLI for OWScript by adapap",
+  "preferGlobal": true,
+  "bin": {
+    "ows": "./bin/OWScript.js"
+  },
+  "scripts": {
+    "clean": "rm -rf ./dist/*",
+    "compile": "tsc -p .",
+    "watch": "tsc -w -p .",
+    "prepublishOnly": "npm run clean && npm run compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatthewSH/node-OWScript.git"
+  },
+  "keywords": [
+    "overwatch",
+    "workshop",
+    "ows",
+    "owscript"
+  ],
+  "author": "matthewh",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/MatthewSH/node-OWScript/issues"
+  },
+  "homepage": "https://github.com/MatthewSH/node-OWScript#readme",
+  "devDependencies": {
+    "@types/inquirer": "^6.0.3",
+    "@types/yargs": "^13.0.1",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "inquirer": "^6.5.0",
+    "yargs": "^13.3.0"
+  }
+}
