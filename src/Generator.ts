@@ -6,9 +6,6 @@ import * as semver from "semver"
 import * as cmdExists from "command-exists"
 import * as deepmerge from "deepmerge"
 import * as p from "phin"
-import * as request from "request"
-import * as tar from "tar"
-import * as zlib from "zlib"
 import * as dgr from "download-git-repo"
 
 export class Generator {
