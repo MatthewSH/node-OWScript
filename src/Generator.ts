@@ -166,8 +166,8 @@ export class Generator {
           })
         })
         .then(() => {
-        //fs.unlink(path.resolve(this.fullPath, "ows.tar.gz"))
-      })
+          //fs.unlink(path.resolve(this.fullPath, "ows.tar.gz"))
+        })
     }
   } 
 
