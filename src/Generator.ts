@@ -56,11 +56,5 @@ export class Generator {
       .then(() => {
         return fs.copy(path.resolve(__dirname, "..", "stubs", "index.owpy.stub"), path.resolve(this.fullPath, "src", "index.owpy"))
       })
-
-
-
-    // fs.writeJSON(path.resolve(this.fullPath, "test.json"), {
-    //   test: "test object string"
-    // })
   }
 }
