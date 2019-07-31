@@ -3,6 +3,9 @@ import { Argv } from "yargs"
 import { Generator } from "./Generator"
 
 yargs
+  .command("$0", "the default OWS command", (): any => {}, (argv: Argv) => {
+    yargs.showHelp()
+  })
   .command(["generate <name> [path]", "gen", "g"], "the project generation command", (yargs: Argv): any => {
     yargs
       .positional("name", {
@@ -14,6 +17,8 @@ yargs
         describe: "the path, if outside current working directory, to create the project",
         type: "string"
       })
+  }, (argv: any) => {
+    return new Generator(argv["name"], argv["path"])
   })
   .help()
   .argv
