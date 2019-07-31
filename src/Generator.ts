@@ -9,6 +9,7 @@ import * as p from "phin"
 import * as request from "request"
 import * as tar from "tar"
 import * as zlib from "zlib"
+import * as dgr from "download-git-repo"
 
 export class Generator {
   private fullPath: string = null;
@@ -140,33 +141,26 @@ export class Generator {
     } else {
       let requestURL: string = null
       if (installArg === "master") {
-        requestURL = "https://api.github.com/repos/adapap/OWScript/tarball/master";
+        //requestURL = "https://api.github.com/repos/adapap/OWScript/tarball/master";
+        requestURL = "adapap/OWScript#master"
       } else if (installArg === "release") {
         let repoRequest = await p({
           url: "https://api.github.com/repos/adapap/OWScript/releases",
-          parse: "json"
+          parse: "json",
+          headers: {
+            "User-Agent": "OWScript-NodeJS-CLI"
+          }
         })
 
         let branchName = repoRequest.body[0]["tag_name"]
-        requestURL = "https://api.github.com/repos/adapap/OWScript/tarball/" + branchName;
+        //requestURL = "https://api.github.com/repos/adapap/OWScript/tarball/" + branchName;
+        requestURL = "adapap/OWScript#" + branchName
       }
 
-      request(requestURL, {
-        headers: {
-          "User-Agent": "OWScript-NodeJS-CLI"
-        }
-      }).pipe(fs.createWriteStream(path.resolve(this.fullPath, "ows.tar.gz")))
 
       fs.mkdir(path.resolve(this.fullPath, "OWScript"))
         .then(() => {
-          return tar.x({
-            file: path.resolve(this.fullPath, "ows.tar.gz"),
-            strip: 1,
-            C: path.resolve(this.fullPath, "OWScript")
-          })
-        })
-        .then(() => {
-          //fs.unlink(path.resolve(this.fullPath, "ows.tar.gz"))
+          dgr(requestURL, path.resolve(this.fullPath, "OWScript"), () => {})
         })
     }
   } 
