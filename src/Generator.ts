@@ -9,11 +9,6 @@ import * as p from "phin"
 import * as dgr from "download-git-repo"
 import { Shared } from "./Shared";
 
-/**
- * TODO
- * - Add origin to git init if using git
- */
-
 export class Generator {
   private fullPath: string = null;
   private minPyVersion: string = ">= 3.7.2"
@@ -117,6 +112,12 @@ export class Generator {
           execSync("git init", {
             cwd: path.resolve(this.fullPath)
           })
+
+          if (answers["gitRepoLink"]) {
+            execSync("git remote add origin " + answers["gitRepoLink"], {
+              cwd: path.resolve(this.fullPath)
+            })
+          }
         } else {
           userObj["git"]["enabled"] = false
         }
