@@ -24,7 +24,7 @@ export class Generator {
       .then((exists: boolean) => {
         projectExists = exists
 
-        if (exists) {
+        if (exists && this.projectName.length > 0) {
           return inquirer.prompt([
             {
               type: "confirm",
@@ -33,18 +33,18 @@ export class Generator {
               default: false
             }
           ])
-        } else {
-          return inquirer.prompt([
-            {
-              type: "confirm",
-              name: "confirm",
-              message: "This command will generate a new OWScript project. Would you to continue?"
-            }
-          ])
         }
+
+        return inquirer.prompt([
+          {
+            type: "confirm",
+            name: "confirm",
+            message: "This command will generate a new OWScript project. Would you to continue?"
+          }
+        ])
       })
       .then((answers: any) => {
-        if (projectExists && answers["confirm"]) {
+        if (projectExists && this.projectName.length > 0 && answers["confirm"]) {
           return fs.remove(this.fullPath)
         } else if (projectExists && !answers["confirm"]) {
           console.log("You chose to not overwrite. Exiting generation...")
