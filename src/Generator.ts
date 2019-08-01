@@ -118,7 +118,7 @@ export class Generator {
 
         let outputObj: {} = deepmerge(userObj, this.baseConfigObject())
 
-        return fs.writeJson(path.resolve(this.fullPath, "owscript.config.json"), outputObj)
+        return fs.writeFile(path.resolve(this.fullPath, "owscript.config.json"), JSON.stringify(outputObj, null, 2))
       })
   }
 
