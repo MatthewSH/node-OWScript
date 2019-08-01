@@ -138,7 +138,10 @@ export class Generator {
       } else if(installArg === "release") {
         let repoRequest = await p({
           url: "https://api.github.com/repos/adapap/OWScript/releases",
-          parse: "json"
+          parse: "json",
+          headers: {
+            "User-Agent": "OWScript-NodeJS-CLI"
+          }
         })
 
         let branchName = repoRequest.body[0]["tag_name"]
@@ -149,7 +152,6 @@ export class Generator {
     } else {
       let requestURL: string = null
       if (installArg === "master") {
-        //requestURL = "https://api.github.com/repos/adapap/OWScript/tarball/master";
         requestURL = "adapap/OWScript#master"
       } else if (installArg === "release") {
         let repoRequest = await p({
@@ -161,7 +163,7 @@ export class Generator {
         })
 
         let branchName = repoRequest.body[0]["tag_name"]
-        //requestURL = "https://api.github.com/repos/adapap/OWScript/tarball/" + branchName;
+
         requestURL = "adapap/OWScript#" + branchName
       }
 
