@@ -6,7 +6,7 @@ yargs
   .command("$0", "the default OWS command", (): any => {}, (argv: Argv) => {
     yargs.showHelp()
   })
-  .command(["generate <name> [path]", "gen", "g"], "the project generation command", (yargs: Argv): any => {
+  .command(["generate <name> [path]", "gen", "g", "init", "i", "new", "n"], "the project generation command", (yargs: Argv): any => {
     yargs
       .positional("name", {
         describe: "the name of the project",
