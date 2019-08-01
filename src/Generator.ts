@@ -6,8 +6,9 @@ import * as semver from "semver"
 import * as cmdExists from "command-exists"
 import * as deepmerge from "deepmerge"
 import * as p from "phin"
-import * as dgr from "download-git-repo"
 import { Shared } from "./Shared";
+
+let dgr = require("download-git-repo")
 
 export class Generator {
   private fullPath: string = null;
