@@ -12,6 +12,7 @@ import { Shared } from "./Shared";
 export class Generator {
   private fullPath: string = null;
   private minPyVersion: string = ">= 3.7.2"
+
   constructor(private projectName: string, private projectPath: string) {
     this.fullPath = path.resolve(this.projectPath != undefined? this.projectPath : "", this.projectName)
     console.log("Generating new project. You'll be asked a couple questions throughout this process.")
