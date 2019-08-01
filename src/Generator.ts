@@ -7,6 +7,7 @@ import * as cmdExists from "command-exists"
 import * as deepmerge from "deepmerge"
 import * as p from "phin"
 import * as dgr from "download-git-repo"
+import { Shared } from "./Shared";
 
 /**
  * TODO
@@ -250,6 +251,13 @@ export class Generator {
         default: null,
         when: (answers: any) => {
           return answers["useGit"];
+        },
+        validate: (input: any) => {
+          if (!Shared.isGitURL(input)) {
+            return "Please ensure you're using a valid git link."
+          } 
+
+          return true
         }
       }
     ]
