@@ -11,11 +11,12 @@ yargs
       .positional("name", {
         describe: "the name of the project",
         type: "string",
-        default: null,
+        default: ""
       })
       .positional("path", {
         describe: "the path, if outside current working directory, to create the project",
-        type: "string"
+        type: "string",
+        default: ""
       })
   }, (argv: any) => {
     return new Generator(argv["name"], argv["path"])
