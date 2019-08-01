@@ -210,7 +210,7 @@ export class Generator {
         name: "website",
         message: "What is the website?",
         default: null,
-        when: function(answers: any) {
+        when: (answers: any) => {
           return answers["hasWebsite"]
         }
       },
@@ -248,7 +248,7 @@ export class Generator {
         name: "gitRepoLink",
         message: "What is the Git repository link?",
         default: null,
-        when: function(answers: any) {
+        when: (answers: any) => {
           return answers["useGit"];
         }
       }
