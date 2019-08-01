@@ -107,13 +107,17 @@ export class Generator {
           userObj["website"] = answers["website"]
         }
 
+        userObj["git"] = {}
+
         if (answers["useGit"]) {
-          userObj["git"] = {}
+          userObj["git"]["enabled"] = true
           userObj["git"]["repo"] = answers["gitRepoLink"]
 
           execSync("git init", {
             cwd: path.resolve(this.fullPath)
           })
+        } else {
+          userObj["git"]["enabled"] = false
         }
 
         if (answers["owscript_install"] !== "n") {
@@ -264,7 +268,9 @@ export class Generator {
       },
       cli: {
         git: {
-          useHTTPS: false
+          enabled: true,
+          useHTTPS: false,
+          repo: null
         },
         locations: {
           modules: "src/modules"
