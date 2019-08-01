@@ -8,6 +8,11 @@ import * as deepmerge from "deepmerge"
 import * as p from "phin"
 import * as dgr from "download-git-repo"
 
+/**
+ * TODO
+ * - Add origin to git init if using git
+ */
+
 export class Generator {
   private fullPath: string = null;
   private minPyVersion: string = ">= 3.7.2"
@@ -106,7 +111,9 @@ export class Generator {
           userObj["git"] = {}
           userObj["git"]["repo"] = answers["gitRepoLink"]
 
-          execSync("git init")
+          execSync("git init", {
+            cwd: path.resolve(this.fullPath)
+          })
         }
 
         if (answers["owscript_install"] !== "n") {
@@ -125,7 +132,9 @@ export class Generator {
   private async installOWS(useGit: boolean, installArg: string) {
     if (useGit) {
       if (installArg === "master") {
-        execSync("git submodule add -b master git@github.com:adapap/OWScript.git OWScript")
+        execSync("git submodule add -b master git@github.com:adapap/OWScript.git OWScript", {
+          cwd: path.resolve(this.fullPath)
+        })
       } else if(installArg === "release") {
         let repoRequest = await p({
           url: "https://api.github.com/repos/adapap/OWScript/releases",
@@ -133,7 +142,9 @@ export class Generator {
         })
 
         let branchName = repoRequest.body[0]["tag_name"]
-        execSync("git submodule add -b " + branchName + " git@github.com:adapap/OWScript.git OWScript")
+        execSync("git submodule add -b " + branchName + " git@github.com:adapap/OWScript.git OWScript", {
+          cwd: path.resolve(this.fullPath)
+        })
       }
     } else {
       let requestURL: string = null
