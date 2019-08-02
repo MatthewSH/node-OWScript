@@ -1,6 +1,7 @@
 import * as yargs from "yargs"
 import { Argv } from "yargs"
 import { Generator } from "./Generator"
+import { Compiler } from "./Compiler";
 
 yargs
   .command("$0", "the default OWS command", (): any => {}, (argv: Argv) => {
@@ -20,6 +21,9 @@ yargs
       })
   }, (argv: any) => {
     return new Generator(argv["name"], argv["path"])
+  })
+  .command(["compile", "c"], "compile the local project", (yargs: Argv): any => {}, (argv: any) => {
+    return new Compiler(argv._)
   })
   .help()
   .argv
