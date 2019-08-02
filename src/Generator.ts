@@ -270,7 +270,7 @@ export class Generator {
     return {
       compiler: {
         input: "src/index.owpy",
-        output: "dist/index.owpy",
+        output: "dist/index.ows",
         options: {
           generateAdapapCredit: true,
           generateVersionRule: true,
