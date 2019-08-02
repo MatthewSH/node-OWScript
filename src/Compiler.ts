@@ -59,11 +59,8 @@ export class Compiler {
           reject(out)
         }
 
-        //console.log(out)
-
         resolve()
       })
-      //resolve(true)
     })
   }
 }
