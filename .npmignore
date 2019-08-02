@@ -1,5 +1,6 @@
-dist/
+src/
 projects/
+tsconfig.json
 
 # Logs
 logs
