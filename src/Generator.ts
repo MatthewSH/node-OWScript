@@ -6,12 +6,12 @@ import * as semver from "semver"
 import * as cmdExists from "command-exists"
 import * as deepmerge from "deepmerge"
 import * as p from "phin"
-import { Shared } from "./Shared";
+import { Shared } from "./Shared"
 
 let dgr = require("download-git-repo")
 
 export class Generator {
-  private fullPath: string = null;
+  private fullPath: string = null
   private minPyVersion: string = ">= 3.7.2"
 
   constructor(private projectName: string, private projectPath: string) {
@@ -22,7 +22,7 @@ export class Generator {
   }
 
   private preflight() {
-    let projectExists: boolean = false;
+    let projectExists: boolean = false
     fs.pathExists(this.fullPath)
       .then((exists: boolean) => {
         projectExists = exists
@@ -95,7 +95,7 @@ export class Generator {
         return inquirer.prompt(this.setupQuestions())      
       })
       .then(async (answers: any) => {
-        let userObj: any = {};
+        let userObj: any = {}
 
         userObj["name"] = answers["name"]
         userObj["author"] = answers["author"]
@@ -253,7 +253,7 @@ export class Generator {
         message: "What is the Git repository link?",
         default: null,
         when: (answers: any) => {
-          return answers["useGit"];
+          return answers["useGit"]
         },
         validate: (input: any) => {
           if (!Shared.isGitURL(input)) {
