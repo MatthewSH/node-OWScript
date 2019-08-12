@@ -115,6 +115,8 @@ export class Generator {
             cwd: path.resolve(this.fullPath)
           })
 
+          fs.copySync(path.resolve(__dirname, "..", "stubs", "gitignore.dist.stub"), path.resolve(this.fullPath, "dist", ".gitignore"))
+
           if (answers["gitRepoLink"]) {
             execSync("git remote add origin " + answers["gitRepoLink"], {
               cwd: path.resolve(this.fullPath)
