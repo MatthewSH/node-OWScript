@@ -280,8 +280,7 @@ export class Generator {
       cli: {
         git: {
           enabled: true,
-          useHTTPS: false,
-          repo: null
+          useHTTPS: false
         },
         locations: {
           modules: "src/modules"
