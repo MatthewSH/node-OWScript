@@ -115,6 +115,8 @@ export class Generator {
             cwd: path.resolve(this.fullPath)
           })
 
+          fs.copySync(path.resolve(__dirname, "..", "stubs", "gitignore.dist.stub"), path.resolve(this.fullPath, "dist", ".gitignore"))
+
           if (answers["gitRepoLink"]) {
             execSync("git remote add origin " + answers["gitRepoLink"], {
               cwd: path.resolve(this.fullPath)
@@ -270,7 +272,7 @@ export class Generator {
     return {
       compiler: {
         input: "src/index.owpy",
-        output: "dist/index.owpy",
+        output: "dist/index.ows",
         options: {
           generateAdapapCredit: true,
           generateVersionRule: true,
@@ -280,8 +282,7 @@ export class Generator {
       cli: {
         git: {
           enabled: true,
-          useHTTPS: false,
-          repo: null
+          useHTTPS: false
         },
         locations: {
           modules: "src/modules"
